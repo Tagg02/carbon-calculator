@@ -2,57 +2,137 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Carbon Footprint Calculator</title>
 
+  <meta name="description" content="A simple client-side carbon footprint calculator built with HTML, CSS and JavaScript.">
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/script.js" defer></script>
 </head>
+
 <body>
-  <h1>Carbon Footprint Calculator</h1>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-dot"></div>
+        <div>
+          <div class="brand-title">Carbon Footprint Calculator</div>
+          <div class="brand-sub">Client-side • No tracking • Demo estimate</div>
+        </div>
+      </div>
 
-  <p>
-    This tool provides a simple estimate of your annual carbon footprint based on
-    everyday activities. All calculations are performed locally in your browser.
-  </p>
+      <div class="topbar-actions">
+        <a class="chip" href="https://github.com/Tagg02/carbon-calculator" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </div>
+  </header>
 
-  <form id="carbon-form">
-    <label>
-      Weekly driving (miles)
-      <input type="number" name="miles">
-    </label>
+  <main class="container">
+    <section class="hero">
+      <h1>Estimate your annual footprint</h1>
+      <p>
+        This tool gives a simple annual estimate (tCO₂e/year) using simplified emission factors.
+        Everything runs locally in your browser — no accounts, no storage, no requests.
+      </p>
+    </section>
 
-    <label>
-      Monthly electricity use (kWh)
-      <input type="number" name="kwh">
-    </label>
+    <section class="grid">
+      <!-- FORM -->
+      <div class="card">
+        <h2>Inputs</h2>
+        <p class="muted">Fill in what you know — you can leave fields blank.</p>
 
-    <label>
-      Short flights per year
-      <input type="number" name="shortFlights">
-    </label>
+        <form id="carbon-form" class="form" autocomplete="off">
+          <div class="row">
+            <label class="field">
+              <span class="label">Weekly driving (miles)</span>
+              <input type="number" name="miles" min="0" step="1" placeholder="e.g., 80">
+              <span class="hint">Approx. car travel per week.</span>
+            </label>
 
-    <label>
-      Long flights per year
-      <input type="number" name="longFlights">
-    </label>
+            <label class="field">
+              <span class="label">Electricity (kWh / month)</span>
+              <input type="number" name="kwh" min="0" step="1" placeholder="e.g., 250">
+              <span class="hint">Check a bill if you’re unsure.</span>
+            </label>
+          </div>
 
-    <label>
-      Diet
-      <select name="diet">
-        <option value="mixed">Mixed</option>
-        <option value="vegetarian">Vegetarian</option>
-        <option value="vegan">Vegan</option>
-      </select>
-    </label>
+          <div class="row">
+            <label class="field">
+              <span class="label">Short flights / year</span>
+              <input type="number" name="shortFlights" min="0" step="1" placeholder="e.g., 2">
+              <span class="hint">Roughly under 3 hours.</span>
+            </label>
 
-    <button type="submit">Calculate</button>
-  </form>
+            <label class="field">
+              <span class="label">Long flights / year</span>
+              <input type="number" name="longFlights" min="0" step="1" placeholder="e.g., 1">
+              <span class="hint">Roughly over 3 hours.</span>
+            </label>
+          </div>
 
-  <p id="result"></p>
+          <div class="row">
+            <label class="field">
+              <span class="label">Diet</span>
+              <select name="diet">
+                <option value="mixed">Mixed</option>
+                <option value="lowmeat">Low meat</option>
+                <option value="vegetarian">Vegetarian</option>
+                <option value="vegan">Vegan</option>
+              </select>
+              <span class="hint">Used as a simplified annual add-on.</span>
+            </label>
 
-  <p>
-    Privacy note: no data is stored or transmitted. This calculator runs entirely
-    client-side.
-  </p>
+            <div class="field actions">
+              <span class="label">Actions</span>
+              <div class="buttons">
+                <button class="btn" type="submit">Calculate</button>
+                <button class="btn ghost" type="button" id="reset">Reset</button>
+              </div>
+              <span class="hint">Results update instantly after calculate.</span>
+            </div>
+          </div>
+
+          <div class="disclaimer">
+            <strong>Note:</strong> This is a demo estimate — real footprints vary by vehicle, grid mix, route, load factor, etc.
+          </div>
+        </form>
+      </div>
+
+      <!-- RESULTS -->
+      <div class="card">
+        <h2>Result</h2>
+        <p class="muted">Your estimate and a simple breakdown will show here.</p>
+
+        <div id="result" class="result" hidden>
+          <div class="result-top">
+            <div>
+              <div class="result-kicker">Estimated annual footprint</div>
+              <div class="result-value"><span id="totalTons">0.0</span> <span class="unit">tCO₂e / year</span></div>
+            </div>
+            <div class="badge" id="badge">Estimate</div>
+          </div>
+
+          <div class="breakdown" id="breakdown"></div>
+
+          <div class="privacy">
+            Privacy: this calculator does not send or store your inputs — all calculations run locally in your browser.
+          </div>
+        </div>
+
+        <div id="emptyState" class="empty">
+          <div class="empty-icon">↳</div>
+          <div>
+            <div class="empty-title">Ready when you are</div>
+            <div class="empty-text">Enter a few values and hit <strong>Calculate</strong>.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Built with HTML/CSS/JS • <span id="year"></span></p>
+    </footer>
+  </main>
 </body>
 </html>
