@@ -1,7 +1,6 @@
 const form = document.getElementById("carbon-form");
 const result = document.getElementById("result");
 
-// Simplified emission factors (demo purposes)
 const FACTORS = {
   driving: 0.3,
   electricity: 0.2,
@@ -14,13 +13,18 @@ const FACTORS = {
   }
 };
 
+function safeNumber(value) {
+  const num = Number(value);
+  return num >= 0 ? num : 0;
+}
+
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const miles = Number(form.miles.value) || 0;
-  const kwh = Number(form.kwh.value) || 0;
-  const shortFlights = Number(form.shortFlights.value) || 0;
-  const longFlights = Number(form.longFlights.value) || 0;
+  const miles = safeNumber(form.miles.value);
+  const kwh = safeNumber(form.kwh.value);
+  const shortFlights = safeNumber(form.shortFlights.value);
+  const longFlights = safeNumber(form.longFlights.value);
   const diet = form.diet.value;
 
   const drivingEmissions = miles * 52 * FACTORS.driving;
