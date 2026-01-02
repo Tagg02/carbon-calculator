@@ -3,8 +3,46 @@
 <head>
   <meta charset="utf-8">
   <title>Carbon Footprint Calculator</title>
+
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/script.js" defer></script>
 </head>
 <body>
   <h1>Carbon Footprint Calculator</h1>
+
+  <form id="carbon-form">
+    <label>
+      Weekly driving (miles)
+      <input type="number" name="miles">
+    </label>
+
+    <label>
+      Monthly electricity use (kWh)
+      <input type="number" name="kwh">
+    </label>
+
+    <label>
+      Short flights per year
+      <input type="number" name="shortFlights">
+    </label>
+
+    <label>
+      Long flights per year
+      <input type="number" name="longFlights">
+    </label>
+
+    <label>
+      Diet
+      <select name="diet">
+        <option value="mixed">Mixed</option>
+        <option value="vegetarian">Vegetarian</option>
+        <option value="vegan">Vegan</option>
+      </select>
+    </label>
+
+    <button type="submit">Calculate</button>
+  </form>
+
+  <p id="result"></p>
 </body>
 </html>
