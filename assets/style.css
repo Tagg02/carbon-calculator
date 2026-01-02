@@ -203,9 +203,32 @@ input:focus, select:focus{border-color: rgba(255,255,255,.28)}
   font-size:13px;
 }
 
-main.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.result{
+  animation: fadeUp .35s ease-out;
 }
 
+@keyframes fadeUp{
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result{
+  animation: fadeUp .35s ease-out;
+}
+
+@keyframes fadeUp{
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
