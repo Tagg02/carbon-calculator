@@ -1,3 +1,30 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: system-ui, sans-serif;
+  background: #0b0f19;
+  color: #e7ecff;
+  padding: 40px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+form {
+  max-width: 420px;
+}
+
+label {
+  display: block;
+  margin-bottom: 14px;
+}
+
+input, select, button {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+}
+
+button {
+  margin-top: 12px;
+  cursor: pointer;
 }
